@@ -5,7 +5,6 @@ With this module you can easyly setup vhosts with a JSON configuration.
 Simply install with npm package manager.
 
 ```
-#!/bin/bash
 
 npm install express-vhost-manager
 
@@ -17,7 +16,6 @@ Simply require and run with your configuration.
 
 
 ```
-#!javascript
 
 var vhostManager = require("express-vhost-manager");
 
@@ -45,7 +43,6 @@ vhostManager(config);
 With a vhost you can just define another express app. The above defined vhost in the config JSON, is the shorten way for:
 
 ```
-#!javascript
 
 var express = require("express");
 var app = express();
