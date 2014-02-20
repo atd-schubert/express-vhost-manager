@@ -1,0 +1,25 @@
+{
+  "name": "express-vhost-manager",
+  "version": "0.0.1",
+  "description": "A simple vhost manager for node.js with special features for the express framework.",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atd-schubert/express-vhost-manager.git"
+  },
+  "keywords": [
+    "vhost",
+    "express",
+    "redirect",
+    "proxy"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arne Schubert",
+  "license": "BSD",
+  "dependencies": {
+    "request": "~2.33.0",
+    "express": "~3.4.8"
+  }
+}
