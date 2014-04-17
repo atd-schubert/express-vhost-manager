@@ -21,7 +21,8 @@ module.exports = function(conf){
   }
   var mkProxy = function(domain, url){
     app.use(express.vhost(domain, function(req, res){
-      req.pipe(request(url+req.url)).pipe(res);
+      var opts = {headers: req.headers, uri: url+req.url};
+      req.pipe(request(opts)).pipe(res);
     }));
   }
   
