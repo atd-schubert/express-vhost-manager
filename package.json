@@ -1,6 +1,6 @@
 {
   "name": "express-vhost-manager",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple vhost manager for node.js with special features for the express framework.",
   "main": "server.js",
   "repository": {
