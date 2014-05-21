@@ -22,7 +22,9 @@ module.exports = function(conf){
   var mkProxy = function(domain, url){
     app.use(express.vhost(domain, function(req, res){
       var opts = {headers: req.headers, uri: url+req.url};
-      req.pipe(request(opts)).pipe(res);
+      var r = request(opts);
+      req.pipe(r).pipe(res);
+      r.on("error", function(err){res.end(err.toString())});
     }));
   }
   
