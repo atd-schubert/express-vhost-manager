@@ -6,7 +6,8 @@ var request = require("request");
 var express = require('express');
 
 //# Export
-module.exports = function(conf){
+module.exports = function(conf, cb){
+  cb = cb || function(err, req, res){if(err) console.error(err); res.end(err.toString());};
   var app = express();
   
   //# Functions
@@ -24,9 +25,16 @@ module.exports = function(conf){
       var opts = {headers: req.headers, uri: url+req.url};
       var r = request(opts);
       req.pipe(r).pipe(res);
-      r.on("error", function(err){res.end(err.toString())});
+      r.on("error", function(err){
+        cb(err, req, res);
+      });
     }));
   }
+  
+  // Default answer
+  app.use(function(req, res, next){
+    cb("Unknown vhost", req, res);
+  });
   
   //# Loops
   var hash;
