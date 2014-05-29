@@ -16,12 +16,14 @@ module.exports = function(conf, cb){
   }
   var mkRedirect = function(domain, url){
     app.use(express.vhost(domain, function(req, res){
+      req.handled = true;
       res.writeHead(301, {"Location": url});
       res.end();
     }));
   }
   var mkProxy = function(domain, url){
     app.use(express.vhost(domain, function(req, res){
+      req.handled = true;
       var opts = {headers: req.headers, uri: url+req.url};
       var r = request(opts);
       req.pipe(r).pipe(res);
@@ -30,11 +32,6 @@ module.exports = function(conf, cb){
       });
     }));
   }
-  
-  // Default answer
-  app.use(function(req, res, next){
-    cb("Unknown vhost", req, res);
-  });
   
   //# Loops
   var hash;
