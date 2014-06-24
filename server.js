@@ -24,7 +24,7 @@ module.exports = function(conf, cb){
   var mkProxy = function(domain, url){
     app.use(express.vhost(domain, function(req, res){
       req.handled = true;
-      var opts = {headers: req.headers, uri: url+req.url};
+      var opts = {headers: req.headers, uri: url+req.url, followRedirect: false};
       var r = request(opts);
       req.pipe(r).pipe(res);
       r.on("error", function(err){
